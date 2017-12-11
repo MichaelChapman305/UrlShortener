@@ -1,0 +1,26 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "Url shortening app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelChapman305/UrlShortener.git"
+  },
+  "author": "Michael Chapman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichaelChapman305/UrlShortener/issues"
+  },
+  "homepage": "https://github.com/MichaelChapman305/UrlShortener#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "pug": "^2.0.0-rc.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.5"
+  }
+}
