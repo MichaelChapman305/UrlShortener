@@ -7,6 +7,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/shorten/:url(*)', (req, res, next) => {
+  const regex = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/;
+
   if (/([0-9][0-9][0-9][0-9])/g.test(req.params.url)) {
     Url.findOne({'shortened': req.params.url}, (err, doc) => {
       if (!doc) {
@@ -16,7 +18,7 @@ router.get('/shorten/:url(*)', (req, res, next) => {
       }
     });
   }
-  else if (req.params.url.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi) && req.params.url.indexOf('.') !== req.params.url.lastIndexOf('.')){
+  else if (regex.test(req.params.url)) {
     const originalUrl = req.params.url;
     const shortUrl = Math.floor(Math.random() * (9999 - 1000) + 1000);
 
