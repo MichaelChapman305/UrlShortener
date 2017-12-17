@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/MichaelChapman305/UrlShortener#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "mongodb": "^3.6.0",
+    "mongoose": "^4.10.8",
     "pug": "^2.0.0-rc.4"
   },
   "devDependencies": {

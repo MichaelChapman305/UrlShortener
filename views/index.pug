@@ -1,10 +1,14 @@
-extends layout.pug
+doctype html
+html(lang="en")
+  head
+    title Url Shortener
+  body
+    h1 URL Shortener
+    h3 Example usage:
+      li https://little-url.herokuapp.com/shorten/https://www.facebook.com
+      li https://little-url.herokuapp.com/shorten/http://foo.com:80
+    h3 Example output:
+      li { "original":"http://foo.com:80", "shorten":"https://little-url.herokuapp.com/8170" }
+    h3 Example usage: 
+      li "https://little-url.herokuapp.com/shorten/2871" will direct to "https://www.website.com"
 
-block content
-  h1 URL Shortener
-  h2 Example usage:
-    li
-    li
-  h2 Example output:
-    li
-    li
