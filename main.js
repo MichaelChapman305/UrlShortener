@@ -10,6 +10,7 @@ app.use(jsonParser());
 app.set('view engine', 'pug');
 
 mongoose.connect(url, {
+  auth:{authdb:"admin"},
   useMongoClient: true
 });
 
