@@ -4,17 +4,11 @@ const mongoose = require('mongoose');
 const jsonParser = require('body-parser').json;
 const app = express();
 const url = process.env.MONGOLAB_URI;
-console.log(url);
-app.use(jsonParser());
 
+app.use(jsonParser());
 app.set('view engine', 'pug');
 
-mongoose.connect(url, {
- ////auth: {
-  //	authdb: 'admin'
-  //},
-  useMongoClient: true
-});
+mongoose.connect(url, { useMongoClient: true });
 
 const db = mongoose.connection;
 mongoose.Promise = global.Promise;

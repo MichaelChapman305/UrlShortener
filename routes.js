@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Url = require('./models').Url;
+const regex = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/;
 
 router.get('/', (req, res) => {
   res.render('index');
 });
 
-router.get('/shorten/:url(*)', (req, res, next) => {
-  const regex = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/;
-
+router.get('/shorten/:url(*)', (req, res) => {
   if (/([0-9][0-9][0-9][0-9])/g.test(req.params.url)) {
     Url.findOne({'shortened': req.params.url}, (err, doc) => {
       if (!doc) {
@@ -26,12 +25,14 @@ router.get('/shorten/:url(*)', (req, res, next) => {
       if (doc) {
         res.redirect('/shorten/:url(*)');
       } else {
-        const newUrl = new Url({
+        const urlObj = {
           'original': originalUrl,
           'shortened': shortUrl
-        });
+        };
+        const newUrl = new Url(urlObj);
+
         newUrl.save((err, url) => {
-          res.send({'original': originalUrl, 'shortened': shortUrl});
+          res.send(urlObj);
         });
       } 
     });
@@ -41,4 +42,3 @@ router.get('/shorten/:url(*)', (req, res, next) => {
 });
 
 module.exports = router;
-
