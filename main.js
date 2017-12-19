@@ -11,7 +11,7 @@ app.set('view engine', 'pug');
 
 mongoose.connect(url, {
  ////auth: {
-  	authdb: 'admin'
+  //	authdb: 'admin'
   //},
   useMongoClient: true
 });
