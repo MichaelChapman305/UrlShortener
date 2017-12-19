@@ -4,12 +4,13 @@ const mongoose = require('mongoose');
 const jsonParser = require('body-parser').json;
 const app = express();
 SET MONGOLAB_URI="mongodb://username:password@ds01316.mlab.com:1316/url-shortener";
+const url = process.env.MONGOLAB_URI;
 
 app.use(jsonParser());
 
 app.set('view engine', 'pug');
 
-mongoose.connect('SET MONGOLAB_URI=', {
+mongoose.connect(url, {
   useMongoClient: true
 });
 
